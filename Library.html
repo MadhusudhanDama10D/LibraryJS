@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Library System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+   <style>
+   body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+#one-page {
+    height: 100%;
+    background-image: url("/home/decoders/Desktop/librarypic.jpg");
+    background-size: auto;
+    -webkit-background-size: auto;
+    -moz-background-size: auto;
+    -o-background-size: auto;
+
+}
+
+.container {
+    position: relative;
+    top: 15%;
+}
+
+h1 {
+    font-size: 50px;
+}
+/* 
+@media (max-width: 976px) {
+    #one-page {
+        height: 150%;
+        background-image: url("/home/decoders/Desktop/librarypic.jpg");
+        background-size: auto;
+        -webkit-background-size: auto;
+        -moz-background-size: auto;
+        -o-background-size: auto;
+    }
+} */
+#insertion_section {
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 7.5px;
+    padding: 15px 10px 15px 10px;
+    width: 100%;
+}
+
+#insertion_section .form-group {
+    width: 90%;
+    margin-left: 10%;
+}
+
+#insertion_section .form-group input,
+#insertion_section .form-group label {
+    width: 90%;
+}
+
+#insertion_section .form-group input {
+    opacity: .20;
+    transition: .5s;
+    outline: none;
+}
+
+#insertion_section .form-group #two-section {
+    margin-left: -7.5%;
+}
+
+#insertion_section .form-group #two-section input {
+    width: 85%;
+}
+
+#insertion_section .form-group button {
+    margin-left: -5%;
+}
+
+#book_list {
+    background: rgba(0, 0, 0, 0.75);
+    width: 92.5%;
+    height: 385px;
+    left: 25px;
+    overflow-y: scroll;
+    border-radius: 7.5px;
+}
+
+#book_list::-webkit-scrollbar {
+    display: none;
+}
+
+#book_list table {
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 7.5px;
+}
+
+#book_list table thead {
+    color: #1a1a1a;
+}
+
+#book_list table tbody {
+    color: #262626;
+}
+
+   
+   </style>
+    <script>
+        $(document).ready(function () {
+
+   
+$("input").focus(function () {
+    $(this).css("opacity", 1)
+})
+$("input").blur(function () {
+    $(this).css("opacity", .2)
+})
+
+
+$(".close").click(function () {
+    $(this).parents(".tab").hide(500)
+})
+
+// var x=document.createElement("img");
+// x.setAttribute("src" ="/home/decoders/Desktop/librarypic.jpg");
+// x.setAttribute("width"="800");
+// x.setAttribute("height"="400");
+// x.setAttribute("alt"="library");
+// document.body.appendChild(x);
+
+
+
+$("#add").click(function () {
+    let book_name = $("#bookName").val(),
+        book_author = $("#authorName").val(),
+        book_publisher = $("#publisherName").val(),
+        book_number = $("#numberPage").val(),
+        book_serial = $("#serialNumber").val(),
+        new_tr = document.createElement("tr"),
+        new_th_book_name = document.createElement("th"),
+        new_th_book_author = document.createElement("td"),
+        new_th_book_publisher = document.createElement("td"),
+        new_th_book_page = document.createElement("td"),
+        new_th_book_serial = document.createElement("td"),
+        table_book_name = document.createTextNode(book_name),
+        table_book_author = document.createTextNode(book_author),
+        table_book_publisher = document.createTextNode(book_publisher),
+        table_book_number = document.createTextNode(book_number),
+        table_book_serial = document.createTextNode(book_serial);
+
+   
+    new_th_book_name.appendChild(table_book_name);
+    new_th_book_author.appendChild(table_book_author);
+    new_th_book_publisher.appendChild(table_book_publisher);
+    new_th_book_page.appendChild(table_book_number);
+    new_th_book_serial.appendChild(table_book_serial);
+
+
+   
+    let name_tab = new_tr.appendChild(new_th_book_name);
+    let author_tab = new_tr.appendChild(new_th_book_author);
+    let publisher_tab = new_tr.appendChild(new_th_book_publisher);
+    let page_tab = new_tr.appendChild(new_th_book_page);
+    let serial_tab = new_tr.appendChild(new_th_book_serial);
+    new_th_book_name.setAttribute("scope", "row")
+
+   
+    let new_table = document.getElementById("tabs");
+    new_table.appendChild(new_tr);
+    new_tr.setAttribute("class", "tab");
+
+
+    
+    let but_td = document.createElement("td"),
+        but = document.createElement("button"),
+        but_span = document.createElement("span"),
+        span_txt = document.createTextNode("X");
+
+    but_td.appendChild(but);
+    but.appendChild(but_span);
+    but_span.appendChild(span_txt);
+    new_tr.appendChild(but_td);
+
+    but.setAttribute("type", "button");
+    but.setAttribute("class", "close");
+    but.setAttribute("aria-label", "Close");
+    but_span.setAttribute("aria-hidden", "true");
+
+   
+    this.form.reset();
+
+   localStorage.setItem("book","c");
+   
+    $(".close").click(function () {
+        $(this).parents(".tab").hide(500)
+
+    })
+
+
+})
+
+})
+    // var x=document.body.createElement("array");
+    // x.localStorage.setItem("name","c");
+    // x.localStorage.setItem("Author","madhusudhan");
+    // x.localStorage.setItem("Publisher","january");
+    // x.localStorage.setItem("Number of pages","466");
+    // x.localStorage.setItem("serial number","9");
+    // document.getElementById(x);
+    // var name="c";
+    // var author="mu";
+    // var Publisher="aa";
+    // var number_of_page="23";
+    // var serial_number="9";
+    // var Library={"name":"name","author":"author","Publisher":"Publisher","number_of_page":"number_of_page","serial_number":"serial_number" }
+    // localStorage.setItem('Library');
+    // localStorage.getItem("Library");
+    var Library={"name":"nodeJs","author":"me","Publisher":"nkn","Number of pages":"Number of pages","Serial Number":"Serial Number" };
+    document.getElementById("books").innerHTML = Library.name + " " + Library.author;
+    localStorage.setItem('Library',"Library");
+    localStorage.getItem("Library");
+    // localStorage.setItem('book',{"name":"nodeJs","author":"me","Publisher":"nkn","Number of pages":"Number of pages","Serial Number":"Serial Number" })
+    // localStorage.getItem("book");
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+    
+        <p id="books"></p>
+    <section id="one-page">
+
+        <div class="container">
+           
+            <div class="row">
+                <h1 class="text-light">Library System</h1>
+            </div>
+
+            <div class="row mt-4">
+               
+                <div class="col-lg-5" id="insertion_section">
+                    <form class="form-group justify-content-center">
+                        <div class="row" id="name-section">
+                            <label for="bookName" class="text-light">Name</label>
+                            <input type="text" class="form-control" id="bookName">
+                        </div>
+                        <div class="row" id="author-section">
+                            <label for="authorName" class="text-light">Author</label>
+                            <input type="text" class="form-control" id="authorName">
+                        </div>
+                        <div class="row" id="publisher-section">
+                            <label for="publisherName" class="text-light">Publisher</label>
+                            <input type="text" class="form-control" id="publisherName">
+                        </div>
+                        <div class="row" id="two-section">
+                            <div class="col-6">
+                                <label for="numberPage" class="text-light">Number of pages</label>
+                                <input type="number" class="form-control" id="numberPage">
+                            </div>
+                            <div class="col-6">
+                                <label for="serialNumber" class="text-light">Serial Number</label>
+                                <input type="number" class="form-control" id="serialNumber">
+                            </div>
+                        </div>
+                        <div class="add-button mt-4">
+                            <button type="button" class="btn btn-danger btn-block" id="add">ADD</button>
+                        </div>
+                        </from>
+                </div>
+
+              
+                <div class="col-lg-7" id="book_list">
+                    <table class="table table-borderless table-striped mt-3 ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">Publisher</th>
+                                <th scope="col">Page</th>
+                                <th scope="col">Serial</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabs">
+                            <tr class="tab">
+                                <th scope="row">The C Programming Language</th>
+                                <td>madhu</td>
+                                <td>Pearson</td>
+                                <td>478</td>
+                                <td>1</td>
+                                <td>
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="tab">
+                                <th scope="row">C++</th>
+                                <td>Bjarne Stroustrup</td>
+                                <td>International Organization for Standardization</td>
+                                <td>398</td>
+                                <td>2</td>
+                                <td>
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="tab">
+                                <th scope="row">java</th>
+                                <td>James Gosling</td>
+                                <td>Sun Microsystems</td>
+                                <td>685</td>
+                                <td>3</td>
+                                <td>
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="tab">
+                                <th scope="row">python</th>
+                                <td>Guido van Rossum</td>
+                                <td>Sky</td>
+                                <td>425</td>
+                                <td>4</td>
+                                <td>
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="tab">
+                                <th scope="row">javaScript</th>
+                                <td>Brendan Eich</td>
+                                <td>Sun</td>
+                                <td>556</td>
+                                <td>5</td>
+                                <td>
+                                    <button type="button" class="close" aria-label="Close">
+                                        <span aria-hidden="true">X</span>
+                                    </button>
+                                </td>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
